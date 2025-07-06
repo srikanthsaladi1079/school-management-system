@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Home- School Portal{% endblock %} 
+
+{% block content %}
+<div id="schoolCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0004.jpg')}}" class="d-block  w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Study image">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0006.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 2">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0007.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 3">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0003.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 4">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0009.jpg')}}" class="d-block w-100" style="height: 900px;  width: 100%; object-fit: contain; object-position: center;" alt="Image 5">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0008.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 6">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0001.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 7">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename='images/IMG-20250704-WA0005.jpg')}}" class="d-block w-100" style="height: 900px; width: 100%; object-fit: contain; object-position: center;" alt="Image 8">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#schoolCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#schoolCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">About Us</h2>
+  <p class="fs-5 text-center">
+    Vidya Vihar International School, founded in 2015, stands as a beacon of academic excellence and holistic development. Our school is deeply rooted in the Indian values of discipline,respect, and curiosity, while embracing a global perspective to prepare students for an ever-evolving world.Over the last decade, our institution has grown from a single classroom to a network of campuses across Andhra Pradesh and Telagana. With a strong commitment to quality education, we have earned the reputation of being the one of the most trusted names in school education.
+  </p>
+  <p class="fs-5 text-center">
+    We believe that education goes beyond textbooks. Our classrooms are interactive hubs of learning, equipped with modern technology, digital boards, and student-centric pedagogies. Every child is encouraged to think independently, ask questions and discover their unique path to success. Our Faculty comprises passionate and experienced educators who are not only subject matter experts but also mentors and life coaches, They inspire, challenge, and support students through every stage of their academic journey.
+  </p>
+  <p class="fs-5 text-center">
+    At Vidya Vihar, exracurricular activities are just optional- they are essential. From inter-school sports tournaments and music festivals to robotics clubs and language labs, our students are exposed to wide range of oppurtunities to explore their talents. Community service is another pillar of our philosophy. Our students regularly engage in social outreach progranms, environmental awareness campaigns, and volunteer initiatives to build compassion and leadership qualities from young age.
+  </p>
+  <p class="fs-5 text-center">
+    Our School is proud to partner with leading educational boards, including CBSE and International programs, to offer a curriculum that is both rigorous and relevant. We continuously upgrade our syllabus, infrastructure, and teaching methods to stay ahead in the educational landscape. The school,s motto- <strong>"Shiksha se Shakti" (Empowerment through Education)</strong>-guides every decision we make. We aim to nurture not jus academically bright students, but responsible global citizens who contribute positively to society.
+  </p>
+  <p class="fs-5 text-center">
+    We warmly invite you to explore our vibrant campuses, meet our faculty, and become a part of the Vidya Vihar family. Together, let's build a future full of learning, integrity and excellence.
+  </p>
+</div>
+
+<div class="container mt-5 mb-5 text-center">
+  <h4>Contact Us</h4>
+  <p>Email : support@vidyavihar.edu.in</p>
+  <p>Phone: +919325093250</p>
+</div>
+
+{% endblock %}

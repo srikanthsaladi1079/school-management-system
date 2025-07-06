@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Registration{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <div class="text-center mb-3">
+      <img src="{{url_for('static',filename='images/file_000000001cd861f7a1e4df418b91420b.png')}}" alt="Logo" width="60">
+          <h4 class="mt-2">Student Registration</h4>
+    </div>
+    <form method="POST" action="{{url_for('register_student')}}">
+      <div class="row g-2">
+        <div class="col-md-6">
+           <input type="text" name="first_name"  class="form-control" placeholder="First name" minlength="2" maxlength="20" pattern="[A-Za-z]+" title="First name should contain letters and should be 2-20 characters" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="middle_name"  class="form-control" placeholder="Middle name (optional)"  maxlength="50" pattern="[A-Za-z]*" title="Middle name should contain  only letters(optional)">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="last_name"  class="form-control" placeholder="Last name" minlength="1" maxlength="20" pattern="[A-Za-z]+" title="Last name should only contain letters and be 2-20 characters" required>
+        </div>
+      </div>
+      <div class="mt-3">
+        <select  name="gender" class="form-select" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="mt-3">
+        <input type="text" name="username"  class="form-control" placeholder="Choose a username" required>
+      </div>
+      <div class="mt-3">
+        <input type="password"  name="password" class="form-control" placeholder="Set a Password(min 8 characters)" minlength="8" maxlength="12" title="Password should be 8-12 characters long"  required>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">Register</button>
+      </div>
+    </form>
+
+    <div class="text-center mt-3">
+      <a href="{{url_for('login_student')}}">Registered User? Login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

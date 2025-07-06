@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4"> Admin Dashboard</h2>
+
+<!--FLASH MESSAGE-->
+
+
+  <!--STUDENTS TABLE-->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">Students Table</div>
+    <div class="card-body">
+      {% if students %}
+          <div class="table-responsive">
+              <table class="table table-bordered table-hover table-sm">
+                  <thead class="table-light">
+                      <tr>
+                         <th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Gender</th><th>Username</th><th>Password (hashed)</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for s in students %}
+                      <tr>
+                          <td>{{ s.id }}</td>
+                          <td>{{ s.first_name }}</td>
+                          <td>{{ s.middle_name }}</td>
+                          <td>{{ s.last_name }}</td>
+                          <td>{{ s.gender }}</td>
+                          <td>{{ s.username }}</td>
+                          <td>{{ s.password }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      {% else %}
+          <p>No student data found.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!--TEACHER TABLE-->
+  <div class="card mb-4">
+      <div class="card-header bg-success text-white">Teacher Table</div>
+      <div class="card-body">
+          {% if teachers %}
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-sm">
+                      <thead class="table-light">
+                          <tr>
+                              <th>ID</th><th>first_name</th><th>middle_name</th><th>last_name</th><th>Gender</th><th>Subject</th><th>Username</th><th>Password(hashed)</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for t in teachers %}
+                          <tr>
+                              <td>{{ t.id }}</td>
+                              <td>{{ t.first_name }}</td>
+                              <td>{{ t.middle_name }}</td>
+                              <td>{{ t.last_name }}</td>
+                              <td>{{ t.gender }}</td>
+                              <td>{{ t.subject }}</td>
+                              <td>{{ t.username }}</td>
+                              <td>{{ t.password }}</td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          {% else %}
+              <p>No teacher data found.</p>
+          {% endif %}
+      </div>
+  </div>
+
+  <!--PARENTS TABLE-->
+  <div class="card mb-5">
+      <div class="card-header bg-warning">Parents Table</div>
+      <div class="card-body">
+          {% if parents %}
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-sm">
+                      <thead class="table-light">
+                          <tr>
+                              <th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Gender</th><th>Username</th><th>Password(hashed)</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for p in parents %}
+                          <tr>
+                              <td>{{ p.id }}</td>
+                              <td>{{ p.first_name }}</td>
+                              <td>{{ p.middle_name }}</td>
+                              <td>{{ p.last_name }}</td>
+                              <td>{{ p.phone }}</td>
+                              <td>{{ p.email }}</td>
+                              <td>{{ p.gender }}</td>
+                              <td>{{ p.username }}</td>
+                              <td>{{ p.password }}</td>
+                          </tr>
+                          {% endfor %}
+                          
+                      </tbody>
+                  </table> 
+              </div>
+          {% else %}
+              <p>No parent data found.</p>
+          {% endif %}
+      </div> 
+  </div>
+
+  <div class="text-center">
+      <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+  </div>
+
+
+  {% if msg %}
+     <div class="alert alert-success text-center mt-3">{{ msg }}</div>
+  {% endif %}
+</div>
+{% endblock %}

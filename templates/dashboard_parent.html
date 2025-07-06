@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Parent Dashboard {% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2>Welcome, {{ parent.first_name }} {{parent.last_name }}</h2>
+  <p class="lead">This is your parent dashboard</p>
+
+  <div class="card mt-4 p-4 text-start">
+    <h5 class="mb-3">Your Info:</h5>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Username:</strong> {{ parent.username }}</li>
+      <li class="list-group-item"><strong>Phone:</strong> {{ parent.phone }}</li>
+      <li class="list-group-item"><strong>Email:</strong> {{ parent.email }}</li>
+    </ul>
+  </div>
+
+  <a href="{{url_for('logout')}}" class="btn btn-danger mt-4">Logout</a>
+
+<!--Button for deletion-->
+  <button onclick="toggleDeleteForm()" class="btn btn-outline-danger mt-4">Delete Account</button>
+
+  <!--Hidden confirmation form-->
+  <div id="deleteForm" style="display: none; margin-top: 20px;">
+      <form method="POST" action="/delete/parent" onsubmit="return confirmDelete()">
+         <input type="password" name="password" placeholder="Enter password" required><br><br>
+         <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
+         <button type="submit" class="btn btn-danger">Delete My Account</button>
+      </form>
+  </div>
+
+  <!--JS for toggle + delete confirmation-->
+  <script>
+  function toggleDeleteForm() {
+      const form = document.getElementById("deleteForm");
+      form.style.display = (form.style.display === "none") ? "block" : "none";
+  }
+
+  function confirmDelete() {
+      return confirm("Are you sure? This action cannot be undone.")
+  }
+  </script>
+  </form>
+
+</div>
+{% endblock %}
