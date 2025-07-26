@@ -1,3 +1,4 @@
+#Importing required libraries
 from flask import Flask, render_template, request, redirect, url_for, flash,session,get_flashed_messages
 from flask_sqlalchemy import SQLAlchemy
 from extensions import db
@@ -5,7 +6,7 @@ from models import Student,Teacher,Parent
 import os
 from werkzeug.security import generate_password_hash,check_password_hash
 
-
+#Creating App
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
@@ -13,13 +14,16 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'instance/student_portal.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#Initializing app
 db.init_app(app)
 from models import Student 
 
+#Home page
 @app.route("/")
 def home():
     return render_template("home.html")
 
+#Student Registration page
 @app.route("/register/student",methods=['GET','POST'])
 def register_student():
     if request.method == 'POST':
@@ -50,6 +54,7 @@ def register_student():
     
     return render_template("register_student.html")
 
+#Student login page
 @app.route("/login/student",methods=['GET','POST'])
 def login_student():
     if request.method == 'POST':
@@ -65,6 +70,7 @@ def login_student():
     
     return render_template("login_student.html")
 
+#Student dashboard
 @app.route("/dashboard/student")
 def student_dashboard():
     if 'student_id' not in session:
@@ -73,7 +79,7 @@ def student_dashboard():
     student = Student.query.get(session['student_id'])
     return render_template("dashboard_students.html",student=student)
 
-
+#Teacher Registration page
 @app.route('/register/teacher',methods=['GET','POST'])
 def register_teacher():
     if request.method == 'POST':
@@ -111,8 +117,7 @@ def register_teacher():
     
     return render_template('register_teacher.html')
 
-
-
+#Teacher login page
 @app.route('/login/teacher',methods=['GET','POST'])
 def login_teacher():
     if request.method == 'POST':
@@ -130,6 +135,7 @@ def login_teacher():
     
     return render_template('login_teacher.html')
 
+#Teacher Dashboard page
 @app.route('/dashboard/teacher')
 def dashboard_teacher():
     if 'teacher_id' not in session:
@@ -138,7 +144,7 @@ def dashboard_teacher():
     teacher = Teacher.query.get(session['teacher_id'])
     return render_template('dashboard_teacher.html',teacher=teacher)
         
-
+#Parent Login page
 @app.route('/login/parent', methods=['GET','POST'])
 def login_parent():
     if request.method == 'POST':
@@ -154,7 +160,7 @@ def login_parent():
     
     return render_template('login_parent.html')
     
-
+#Parent registration page
 @app.route('/register/parent',methods=['GET','POST'])
 def register_parent():
     if request.method == 'POST':
@@ -194,6 +200,7 @@ def register_parent():
 
     return render_template("register_parent.html")
 
+#Parent Dashboard page  
 @app.route('/dashboard/parent')
 def dashboard_parent():
     if 'parent_id' not in session:
@@ -202,20 +209,23 @@ def dashboard_parent():
     parent = Parent.query.get(session['parent_id'])
     return render_template('dashboard_parent.html',parent=parent)
 
+#Contact us Page
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+#Gallery page  
 @app.route('/gallery')
 def gallery():
     return render_template('gallery.html')
 
+#Logout route
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('home'))
  
-    
+#Student account deletion page  
 @app.route('/delete/student', methods=['POST'])
 def delete_student():
       if 'student_id' not in session:
@@ -237,10 +247,11 @@ def delete_student():
 
       return redirect(url_for("register_student"))
   
+#Teacher account deletion page
 @app.route('/delete/teacher', methods=['POST'])
 def delete_teacher():
       if 'teacher_id' not in session:
-          return redirect(url_for('login_student'))
+          return redirect(url_for('login_teacher'))
       
       teacher = Teacher.query.get(session['teacher_id'])
       password = request.form['password']
@@ -258,7 +269,7 @@ def delete_teacher():
 
       return redirect(url_for("register_teacher"))
 
-  
+#Parent account deletion page 
 @app.route('/delete/parent', methods=['POST'])
 def delete_parent():
       if 'parent_id' not in session:
@@ -281,7 +292,7 @@ def delete_parent():
 
       return redirect(url_for("register_parent"))
   
-  
+#Forgot password page for teacher 
 @app.route('/forgot/teacher',methods=['GET','POST'])
 def forgot_teacher():
     if request.method == 'POST':
@@ -303,6 +314,7 @@ def forgot_teacher():
 
     return render_template("forgot_teacher.html")
 
+#Forgot password page for parent
 @app.route('/forgot/parent',methods=['GET','POST'])
 def forgot_parent():
     if request.method == 'POST':
@@ -328,7 +340,7 @@ def forgot_parent():
  
     return render_template("forgot_parent.html")
 
-
+#Forgot password page for student
 @app.route('/forgot/student',methods=['GET','POST'])
 def forgot_student():
     if request.method == 'POST':
@@ -349,6 +361,7 @@ def forgot_student():
     
     return render_template("forgot_student.html")
 
+#Admin login page
 @app.route("/login/admin",methods=['GET','POST'])
 def login_admin():
     if request.method == 'POST':
@@ -363,7 +376,7 @@ def login_admin():
         
     return render_template("login_admin.html")
 
-
+#Admin dashboard page with hashed passwords in table and just user tables
 @app.route("/admin/dashboard")
 def admin_dashboard():
     if "admin" not in session:
@@ -374,13 +387,15 @@ def admin_dashboard():
     parents = Parent.query.all()
     return render_template("dashboard_admin.html",students=students,teachers=teachers,parents=parents)
 
+#Logout page for admin
 @app.route("/logout/admin")
 def logout_admin():
     session.pop("admin", None)
     return redirect(url_for("home"))
-                          
+
+#Run the Flask app (remove (debug=True) when deploying online)                      
 if __name__ == '__main__':
     with app.app_context():
         from models import Student 
         db.create_all()
-    app.run()
+    app.run(debug=True)
