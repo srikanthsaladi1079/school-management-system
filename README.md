@@ -47,7 +47,7 @@ A beginner-friendly full-stack Flask project with role-based login, dashboards, 
 ## ❓ How to Run Locally
 
 '''bash
-git clone https://github.com/srikanthsaladi1079/school-management-system.git
+git clone https://github.com/srikanthsaladi1079/school-management-system
 cd school-management-system
 
 ## ⬇️ Install Dependencies
@@ -78,6 +78,10 @@ Password : vviprincipal
 - 🚀 Ready for deployment
 
 ---
+
+## 📷 Images/Screenshots
+
+🔗 images folder in repo
 
 ## 📃 License
 
